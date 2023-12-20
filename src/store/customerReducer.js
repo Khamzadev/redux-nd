@@ -3,8 +3,12 @@ const defaultState = {
   customers: []
 }
 
+
+
 export const customerReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'ADD_MANY_CUSTOMERS':
+      return { ...state, customers: [...state.customers, ...action.payload] }
     case 'ADD_CUSTOMER':
       return { ...state, customers: [...state.customers, action.payload] }
     case 'DELETE_CUSTOMER':
@@ -13,3 +17,7 @@ export const customerReducer = (state = defaultState, action) => {
       return state
   }
 }
+
+
+export const addManyCustomers = (payload) => ({ type: 'ADD_MANY_CUSTOMERS', payload })
+
